@@ -59,33 +59,42 @@ function mapReview(row: ReviewRow): Review {
   };
 }
 
+const EMPTY_BOARD: Board = {
+  reviews: [],
+  stats: { reviewCount: 0, ratingSum: 0, average: 0, downloads: 0 },
+};
+
 async function loadBoard(): Promise<Board> {
-  const sql = await getSql();
-  const rows = await sql<ReviewRow>`
+  try {
+    const sql = await getSql();
+    const rows = await sql<ReviewRow>`
     select id, display_name, rating, kind, body, helpful, created_at
     from reviews
     order by created_at desc
     limit 80
   `;
-  const tally = await sql<{ review_count: number; rating_sum: number }>`
+    const tally = await sql<{ review_count: number; rating_sum: number }>`
     select count(*)::int as review_count,
            coalesce(sum(rating), 0)::int as rating_sum
     from reviews
   `;
-  const downloads = await sql<{ value: number }>`
+    const downloads = await sql<{ value: number }>`
     select value from app_stats where key = 'downloads'
   `;
-  const reviewCount = Number(tally[0]?.review_count ?? 0);
-  const ratingSum = Number(tally[0]?.rating_sum ?? 0);
-  return {
-    reviews: rows.map(mapReview),
-    stats: {
-      reviewCount,
-      ratingSum,
-      average: reviewCount === 0 ? 0 : ratingSum / reviewCount,
-      downloads: Number(downloads[0]?.value ?? 0),
-    },
-  };
+    const reviewCount = Number(tally[0]?.review_count ?? 0);
+    const ratingSum = Number(tally[0]?.rating_sum ?? 0);
+    return {
+      reviews: rows.map(mapReview),
+      stats: {
+        reviewCount,
+        ratingSum,
+        average: reviewCount === 0 ? 0 : ratingSum / reviewCount,
+        downloads: Number(downloads[0]?.value ?? 0),
+      },
+    };
+  } catch {
+    return EMPTY_BOARD;
+  }
 }
 
 export const getBoard = createServerFn({ method: "GET" }).handler(async () => {
