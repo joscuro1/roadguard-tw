@@ -144,11 +144,11 @@ export const copy = {
       },
       {
         title: "填 Build 設定",
-        body: "專案名稱會變成網址的一部分。填完下面這組設定後，按 Save and Deploy。第一次大約 1–3 分鐘。",
+        body: "專案名稱會變成網址的一部分。Build command 改成下面這行，Deploy command 維持 npx wrangler deploy，然後按 Deploy。第一次大約 1–3 分鐘。",
       },
       {
         title: "拿到公開網址",
-        body: "成功後會得到 https://專案名稱.pages.dev。之後每次 push 到 main，Cloudflare 會自動重建並上線。Pull request 也會有獨立預覽網址。",
+        body: "成功後會得到 https://roadguard-tw.xxx.workers.dev。之後每次 push 到 main，Cloudflare 會自動重建並上線。",
       },
       {
         title: "綁自己的網域（選用）",
@@ -157,10 +157,9 @@ export const copy = {
     ],
     deployBuildTitle: "Build 設定（照抄）",
     deployBuild: [
-      { key: "Production branch", value: "main" },
-      { key: "Framework preset", value: "Vite" },
-      { key: "Build command", value: "npm run build" },
-      { key: "Build output directory", value: "dist" },
+      { key: "Project name", value: "roadguard-tw" },
+      { key: "Build command", value: "NITRO_PRESET=cloudflare_module npm run build" },
+      { key: "Deploy command", value: "npx wrangler deploy" },
     ],
     deployCopy: "複製",
     deployCopied: "已複製",
@@ -323,11 +322,11 @@ export const copy = {
       },
       {
         title: "Fill in build settings",
-        body: "The project name becomes part of the URL. Use the settings below, then Save and Deploy. The first build takes 1–3 minutes.",
+        body: "The project name becomes part of the URL. Change the Build command to the line below, leave Deploy command as npx wrangler deploy, then tap Deploy. The first build takes 1–3 minutes.",
       },
       {
         title: "Get the public URL",
-        body: "When it succeeds you get https://project-name.pages.dev. Every push to main rebuilds production. Pull requests get their own preview URL.",
+        body: "When it succeeds you get https://roadguard-tw.xxx.workers.dev. Every push to main rebuilds production.",
       },
       {
         title: "Custom domain (optional)",
@@ -336,10 +335,9 @@ export const copy = {
     ],
     deployBuildTitle: "Build settings (copy these)",
     deployBuild: [
-      { key: "Production branch", value: "main" },
-      { key: "Framework preset", value: "Vite" },
-      { key: "Build command", value: "npm run build" },
-      { key: "Build output directory", value: "dist" },
+      { key: "Project name", value: "roadguard-tw" },
+      { key: "Build command", value: "NITRO_PRESET=cloudflare_module npm run build" },
+      { key: "Deploy command", value: "npx wrangler deploy" },
     ],
     deployCopy: "Copy",
     deployCopied: "Copied",

@@ -2,22 +2,15 @@
 
 Website for the RoadGuard TW Android app — download, ratings, feedback, and feature ideas.
 
-- Live preview: this chat
-- GitHub: after you connect Cloudflare Pages, every push to `main` goes live at `*.pages.dev`
+## Cloudflare Workers / Pages
 
-## Cloudflare Pages
-
-1. [Workers & Pages](https://dash.cloudflare.com/?to=/:account/workers-and-pages) → **Create application** → **Pages** → **Connect to Git**
-2. Authorize GitHub and select this repository
-3. Use these build settings, then **Save and Deploy**
+1. [Workers & Pages](https://dash.cloudflare.com/?to=/:account/workers-and-pages) → **Create application** → connect GitHub repo `joscuro1/roadguard-tw`
+2. Use these settings, then **Deploy**
 
 | Setting | Value |
 |---|---|
-| Production branch | `main` |
-| Framework preset | Vite |
-| Build command | `npm run build` |
-| Build output directory | `dist` |
+| Project name | `roadguard-tw` |
+| Build command | `NITRO_PRESET=cloudflare_module npm run build` |
+| Deploy command | `npx wrangler deploy` |
 
-The in-site **上架 / Deploy** page has the same steps.
-
-Reviews on the published Grok app use a database. A static Pages deploy still shows the landing and download; shared ratings need D1 (or keep the published app for the live board).
+Reviews on this live preview use a local database. On Cloudflare, shared ratings need a hosted Postgres (`DATABASE_URL`) or D1 later.
