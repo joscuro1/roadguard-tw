@@ -79,7 +79,7 @@ export const copy = {
     version: "版本",
     requires: "系統需求",
     androidReq: "Android 8.0 以上",
-    packageNote: "直裝包 · ZIP",
+    packageNote: "直裝包 · APK · Arm64",
     changelogTitle: "這一版",
     changelog: [
       "台灣測速點資料更新",
@@ -257,7 +257,7 @@ export const copy = {
     version: "Version",
     requires: "Requires",
     androidReq: "Android 8.0+",
-    packageNote: "Sideload package · ZIP",
+    packageNote: "Sideload APK · Arm64",
     changelogTitle: "This build",
     changelog: [
       "Updated Taiwan camera locations",
